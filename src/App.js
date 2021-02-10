@@ -22,7 +22,7 @@ class App extends Component {
           (wpResponse) => {
 
             // filter post text
-            const postContent = wpResponse.content.rendered.replace(/<\/?[^>]+(>|$)/g, "");
+            const postContent = wpResponse.content.rendered.replace(/<\/?[^>]+(>|$)/g, "").replace('&#8217;', "'");
             
             this.setState({
               ...this.state,
