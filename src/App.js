@@ -20,13 +20,16 @@ class App extends Component {
       .then(res => res.json())
         .then(
           (wpResponse) => {
+
+            // filter post text
+            const postContent = wpResponse.content.rendered.replace(/<\/?[^>]+(>|$)/g, "");
             
             this.setState({
               ...this.state,
               post: {
                 postTitle: wpResponse.title.rendered,
                 postImage: wpResponse._embedded["wp:featuredmedia"][0].source_url,
-                postText: wpResponse.content.rendered,
+                postText: postContent,
                 postAuthor: wpResponse._embedded.author[0].name
               },
               isLoaded: true
@@ -42,11 +45,18 @@ class App extends Component {
   }
 
   render(){
+    const { postTitle, postImage, postText, postAuthor } = this.state.post;
     return (
       <div className="App">
-        <PDFViewer>
-          <Quixote />
-        </PDFViewer>
+        {this.state.isLoaded ? 
+        (<PDFViewer>
+          <Quixote
+            postTitle={postTitle}
+            postImage={postImage}
+            postText={postText}
+            postAuthor={postAuthor}
+          />
+        </PDFViewer>) : 'PDF Loading...' }
       </div>
     );
   }
