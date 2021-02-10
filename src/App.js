@@ -16,22 +16,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost/wp-json/wp/v2/posts/1")
+    fetch("http://localhost/wp-json/wp/v2/posts/1?_embed")
       .then(res => res.json())
         .then(
           (wpResponse) => {
-            console.log(wpResponse.author);
-            var authorId = wpResponse.author;
-            fetch("http://localhost/wp-json/wp/v2/users/" + authorId)
-              .then(res => res.json())
-                .then(
-                  (authorResponse) => {
-                    console.log(authorResponse.name);
-                    this.setState({
-                      
-                    })
-                  }
-                )
+            
+            this.setState({
+              ...this.state,
+              post: {
+                postTitle: wpResponse.title.rendered,
+                postImage: wpResponse._embedded["wp:featuredmedia"][0].source_url,
+                postText: wpResponse.content.rendered,
+                postAuthor: wpResponse._embedded.author[0].name
+              },
+              isLoaded: true
+            })
           },
           (error) => {
             this.setState({

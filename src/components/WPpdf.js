@@ -9,10 +9,10 @@ const Quixote = () => (
         </Text>
         <Text style={styles.title}>Don Quijote de la Mancha</Text>
         <Text style={styles.author}>Miguel de Cervantes</Text>
-        <Image
+        {/* <Image
           style={styles.image}
           src="/images/quijote1.jpg"
-        />
+        /> */}
         <Text style={styles.subtitle}>
           Capítulo I: Que trata de la condición y ejercicio del famoso hidalgo D.
           Quijote de la Mancha
@@ -91,10 +91,10 @@ const Quixote = () => (
           Capítulo II: Que trata de la primera salida que de su tierra hizo el
           ingenioso Don Quijote
         </Text>
-        <Image
+        {/* <Image
           style={styles.image}
           src="/images/quijote2.png"
-        />
+        /> */}
         <Text style={styles.text}>
           Hechas, pues, estas prevenciones, no quiso aguardar más tiempo a poner
           en efeto su pensamiento, apretándole a ello la falta que él pensaba que
